@@ -1,0 +1,23 @@
+version: '3'
+services:
+  be:
+    image: be-app
+    build: 
+      context: .
+    ports:
+      - "8000:8000"
+    environment:
+      port: 80
+      DB_NAME: PROJECTS
+      DB_USERNAME: PROJECTS
+      DB_PASSWORD: PROJECTS
+      DB_SCHEMA: public
+      DDL_METHOD: update
+  fe:
+    build: ./templates/
+    environment:
+      VITE_API_URL: http://localhost
+    ports:
+      - "5500:5500"
+    expose:
+      - 5500
